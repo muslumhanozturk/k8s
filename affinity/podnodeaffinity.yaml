@@ -8,7 +8,7 @@ spec:
     image: ozgurozturknet/k8s
   affinity:
     nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
+      requiredDuringSchedulingIgnoredDuringExecution:   # bu podu olustururken mutlaka bu alttaki eslesmeye uygun node bul ve bu podu orada olustur. uygun node bulamazsan da pod olusturulmasin
         nodeSelectorTerms:
         - matchExpressions:
           - key: app
@@ -26,7 +26,7 @@ spec:
     image: ozgurozturknet/k8s
   affinity:
     nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
+      preferredDuringSchedulingIgnoredDuringExecution: # bu tanima uygun bir node ustunde olustur. bu tanima uygun node bulamazsan da pending te bekleme baska node bul orda olustur
       - weight: 1
         preference:
           matchExpressions:
