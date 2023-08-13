@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: production
+  name: senior-role-production
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["*"] # Tüm kaynaklara izin ver
+  verbs: ["*"] # okuma ve listeleme
+
+--- 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: senior-role-production-binding
+  namespace: production
+subjects:
+- kind: Group
+  name: senior
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: senior-role-production
+  apiGroup: rbac.authorization.k8s.io

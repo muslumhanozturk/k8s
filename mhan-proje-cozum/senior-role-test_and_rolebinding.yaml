@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: test
+  name: senior-role-test
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["*"] # Tüm kaynaklara izin ver
+  verbs: ["*"] # Tüm işlemlere izin ver
+
+--- 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: senior-role-test-binding
+  namespace: test
+subjects:
+- kind: Group
+  name: senior
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: senior-role-test
+  apiGroup: rbac.authorization.k8s.io
